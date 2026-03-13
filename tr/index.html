@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurnaWorks | iOS ve Android Mobil Uygulama Geliştirme</title>
+  <meta
+    name="description"
+    content="TurnaWorks, iOS ve Android için premium mobil uygulamalar geliştirir. Emirhan Kolver tarafından kurulan stüdyo; Mojify: AI Emoji Maker ve Tolero: AI Calorie Counter gibi başarılı ürünlere sahiptir."
+  />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#546DE5',
+            primaryDark: '#4458C8',
+            soft: '#F6F8FF',
+            borderSoft: '#E8ECFF',
+            textMuted: '#64748B',
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(84, 109, 229, 0.10)',
+            card: '0 12px 40px rgba(15, 23, 42, 0.08)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+    <a href="#home" class="flex items-center gap-3">
+      <!-- Replace with your actual logo path -->
+      <img src="/turnaworks-logo.svg" alt="TurnaWorks logosu" class="h-10 w-auto" />
+      <div>
+        <div class="text-lg font-bold tracking-tight">TurnaWorks</div>
+        <div class="text-xs text-slate-500">Mobil Uygulama Geliştirme</div>
+      </div>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex">
+      <a href="#about" class="text-sm font-medium text-slate-600 transition hover:text-primary">Hakkında</a>
+      <a href="#services" class="text-sm font-medium text-slate-600 transition hover:text-primary">Hizmetler</a>
+      <a href="#portfolio" class="text-sm font-medium text-slate-600 transition hover:text-primary">Portföy</a>
+      <a href="#contact" class="text-sm font-medium text-slate-600 transition hover:text-primary">İletişim</a>
+    </nav>
+
+    <a
+      href="#contact"
+      class="hidden rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-primaryDark md:inline-flex"
+    >
+      Proje Başlat
+    </a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="home" class="relative overflow-hidden">
+  <div
+    class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(84,109,229,0.10),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(84,109,229,0.08),transparent_25%)]"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
+    <div>
+      <div
+        class="mb-5 inline-flex items-center gap-2 rounded-full border border-borderSoft bg-soft px-4 py-2 text-sm font-medium text-primary">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        iOS & Android Uygulama Geliştirme
+      </div>
+
+      <h1 class="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        <span class="text-primary">iOS ve Android</span> için şık mobil ürünler
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-8 text-textMuted">
+        TurnaWorks, <strong>Emirhan Kolver</strong> tarafından kurulan bir mobil yazılım stüdyosudur.
+        Apple ve Android platformlarında yüksek kaliteli mobil deneyimler geliştirir.
+        Yapay zekâ destekli tüketici uygulamalarından sağlık ve yardımcı araçlara kadar,
+        fikirleri ölçeklenebilir mobil uygulamalara dönüştürür.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+        <a
+          href="#portfolio"
+          class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 font-semibold text-white shadow-soft transition hover:bg-primaryDark"
+        >
+          Portföyü Gör
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3.5 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+        >
+          Birlikte Çalışalım
+        </a>
+      </div>
+
+      <div class="mt-10 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
+          <div class="text-2xl font-bold text-primary">2</div>
+          <div class="mt-1 text-sm text-slate-500">Yayınlanmış Ürün</div>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
+          <div class="text-2xl font-bold text-primary">#5</div>
+          <div class="mt-1 text-sm text-slate-500">TR & SE En İyi Sıralama</div>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
+          <div class="text-2xl font-bold text-primary">#10</div>
+          <div class="mt-1 text-sm text-slate-500">Almanya En İyi Sıralama</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="rounded-2xl border border-slate-100 bg-soft p-5">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="fa-brands fa-apple text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold">iOS’ta Mükemmellik</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              App Store standartlarına uygun, kullanıcı odaklı tasarımla native ve pürüzsüz iPhone deneyimleri.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-100 bg-soft p-5">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="fa-brands fa-android text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Android’e Hazır</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Performans, uyumluluk ve uzun vadeli büyüme için güvenilir Android uygulamaları.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-100 bg-soft p-5 sm:col-span-2">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold">AI Destekli Tüketici Uygulamaları</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              TurnaWorks; yaratıcı araçlardan sağlık odaklı takip uygulamalarına kadar,
+              kullanıcıların günlük olarak etkileşime girdiği AI ürünlerini geliştirme konusunda pratik deneyime sahiptir.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute -bottom-6 -left-6 hidden rounded-2xl border border-borderSoft bg-white px-5 py-4 shadow-soft md:block">
+        <div class="text-sm font-semibold text-slate-900">Kurucu</div>
+        <div class="text-sm text-slate-500">Emirhan Kolver</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="border-t border-slate-100 bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="rounded-full bg-soft px-4 py-2 text-sm font-semibold text-primary">TurnaWorks Hakkında</span>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        Ürün-öncelikli düşünceyle odaklı bir mobil stüdyo
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-textMuted">
+        TurnaWorks, <strong>iOS</strong> ve <strong>Android</strong> için mobil uygulama geliştirme konusunda uzmanlaşır.
+        Emirhan Kolver liderliğinde; performans, kullanılabilirlik ve pazara hazır olma odağıyla modern ve kullanıcı dostu
+        uygulamalar üretir.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <h3 class="text-lg font-semibold">Uçtan Uca Ürün Geliştirme</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Fikir doğrulama ve UX planlamadan, üretime hazır yayın süreçlerine kadar.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h3 class="text-lg font-semibold">Hızlı, Temiz, Ölçeklenebilir Uygulamalar</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Tepkisellik ve sürdürülebilirlik odaklı yüksek performanslı mobil deneyimler.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3 class="text-lg font-semibold">Gerçek Kullanıcılar İçin</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Sadece yayınlanmak için değil; büyümek, etkileşim yaratmak ve kullanıcı tutmak için tasarlanan ürünler.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-soft">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="max-w-2xl">
+      <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Hizmetler</span>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        Modern işletmeler için özelleştirilmiş mobil çözümler
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-textMuted">
+        TurnaWorks, markalara ve girişimcilere sezgisel, şık ve üretime hazır mobil uygulamalar geliştirmede yardımcı olur.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-4 md:grid-cols-2">
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-brands fa-apple mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">iOS Uygulama Geliştirme</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Apple kullanıcıları için optimize edilmiş, App Store yayın süreçlerine uygun native iPhone uygulamaları.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-brands fa-android mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">Android Uygulama Geliştirme</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Geniş cihaz desteği ve güvenilir performansla sağlam Android deneyimleri.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-solid fa-brain mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">AI Destekli Uygulama Özellikleri</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Görüntü analizi, içerik üretimi ve kişiselleştirilmiş kullanıcı akışları için akıllı özellikler.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-solid fa-cloud-arrow-up mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">Yayınlama & Lansman Desteği</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          App Store ve Google Play gönderimleri, optimizasyon ve kademeli yayın (rollout) süreçlerinde destek.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-2xl">
+        <span class="rounded-full bg-soft px-4 py-2 text-sm font-semibold text-primary">Portföy</span>
+        <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+          TurnaWorks’ten öne çıkan uygulamalar
+        </h2>
+        <p class="mt-5 text-lg leading-8 text-textMuted">
+          TurnaWorks’ün AI, kullanılabilirlik ve mobil büyüme deneyimini yansıtan iki tüketici odaklı ürün.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+
+      <!-- Mojify Card -->
+      <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
+        <div class="border-b border-slate-100 bg-soft p-8">
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-4">
+              <!-- Replace with your actual app logo path -->
+              <img src="/mojify-logo.png" alt="Mojify logosu"
+                   class="h-16 w-16 rounded-2xl object-cover shadow-sm" />
+              <div>
+                <h3 class="text-2xl font-bold">Mojify: AI Emoji Maker</h3>
+                <p class="mt-1 text-sm text-slate-500">Daha etkileyici mesajlaşma için AI destekli emoji üretimi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <p class="text-sm leading-7 text-slate-600">
+            Mojify; kullanıcıların <strong>fotoğraflarını</strong> veya <strong>fikirlerini</strong> özel emojilere
+            dönüştürmesine olanak tanıyan geniş ve yaratıcı bir emoji kütüphanesi sunar.
+            <strong>iMessage eklentisi</strong> içerir ve <strong>WhatsApp</strong>, <strong>iMessage</strong> ve daha
+            fazlası gibi platformlarda paylaşımı destekler.
+          </p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-face-smile"></i>
+                <span class="font-semibold">Yaratıcı Emoji Üretimi</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Fotoğrafları ve düşünceleri benzersiz, paylaşılabilir emoji içeriklerine dönüştürün.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-comments"></i>
+                <span class="font-semibold">Mesajlaşma Entegrasyonu</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                iMessage eklentisi desteği ve sohbet platformlarında kolay kullanım.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl bg-soft p-5 text-center">
+              <div class="text-2xl font-bold text-primary">#5</div>
+              <div class="mt-1 text-sm text-slate-500">Türkiye</div>
+            </div>
+            <div class="rounded-2xl bg-soft p-5 text-center">
+              <div class="text-2xl font-bold text-primary">#5</div>
+              <div class="mt-1 text-sm text-slate-500">İsveç</div>
+            </div>
+            <div class="rounded-2xl bg-soft p-5 text-center">
+              <div class="text-2xl font-bold text-primary">#10</div>
+              <div class="mt-1 text-sm text-slate-500">Almanya</div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primaryDark"
+            >
+              <i class="fa-brands fa-app-store-ios"></i>
+              App Store’da Görüntüle
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tolero Card -->
+      <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
+        <div class="border-b border-slate-100 bg-soft p-8">
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-4">
+              <!-- Replace with your actual app logo path -->
+              <img src="/tolero-logo.png" alt="Tolero logosu"
+                   class="h-16 w-16 rounded-2xl object-cover shadow-sm" />
+              <div>
+                <h3 class="text-2xl font-bold">Tolero: AI Calorie Counter</h3>
+                <p class="mt-1 text-sm text-slate-500">AI destekli öğün takibi ve beslenme içgörüleri</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <p class="text-sm leading-7 text-slate-600">
+            Tolero, kullanıcıların yediklerinin fotoğrafını çekerek öğünlerini takip etmesine yardımcı olur.
+            Uygulama; <strong>kalori</strong>, <strong>karbonhidrat</strong>, <strong>protein</strong> ve <strong>yağ</strong>
+            gibi besin değerlerini sunar.
+            Ayrıca <strong>Apple Health</strong> ve <strong>Google Health Connect</strong> ile sağlık verilerini paylaşabilir;
+            böylece kilo ve tüketim değişimlerini zaman içinde izlemek kolaylaşır.
+          </p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-camera"></i>
+                <span class="font-semibold">Fotoğrafla Öğün Kaydı</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Kullanıcılar, yemeklerinin fotoğrafını çekerek hızlıca kayıt oluşturabilir.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span class="font-semibold">Sağlık Verisi Senkronizasyonu</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Daha geniş bir iyi yaşam takibi için Apple Health ve Google Health Connect ile entegre olur.
+              </p>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-3 text-sm text-slate-600">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-primary"></i>
+              Günlük öğün ve besin takibi
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-primary"></i>
+              Zaman içinde kilo ve tüketim trendlerini izleme
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-primary"></i>
+              iOS ve Android’de kullanılabilir
+            </li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primaryDark"
+            >
+              <i class="fa-brands fa-app-store-ios"></i>
+              App Store
+            </a>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+            >
+              <i class="fa-brands fa-google-play"></i>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Why TurnaWorks -->
+<section class="bg-soft">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Neden TurnaWorks</span>
+        <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+          Gerçek ürün deneyimiyle güçlenen mobil uzmanlık
+        </h2>
+        <p class="mt-6 text-lg leading-8 text-textMuted">
+          TurnaWorks sadece ekranlar geliştirmez; insanların indirip severek kullandığı mobil ürünler inşa eder.
+          Halihazırda pazarda başarı yakalamış AI destekli uygulamalarla,
+          her projeye pratik geliştirme bilgisi ve disiplinli uygulama yaklaşımı getirir.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-rocket mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Lansmana Hazır Kalite</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Mağaza gönderimi, performans ve kullanıcı onboarding süreçleri için hazır uygulamalar.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-user-check mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Kurucu Liderliğinde İlerleme</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Net iletişim ve ürün odağı için Emirhan Kolver ile doğrudan çalışın.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-puzzle-piece mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Çapraz Platform Bakış</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            iOS ve Android ekosistem gereksinimleri için uçtan uca uyumlu planlama.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-lightbulb mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Ürün Odaklı Yaklaşım</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Kullanıcı değeri, teknik kalite ve iş potansiyeli arasında güçlü denge.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="bg-white">
+  <div class="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+    <div
+      class="rounded-3xl border border-borderSoft bg-gradient-to-br from-soft to-white p-10 text-center shadow-card sm:p-14">
+      <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">İletişim</span>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        Bir mobil uygulama fikriniz mi var?
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-textMuted">
+        TurnaWorks, iOS ve Android için şık mobil deneyimler üretmede girişimcilere ve işletmelere yardımcı olur.
+        Bir sonraki ürününüzü geliştirmek istiyorsanız, konuşalım.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:hello@turnaworks.com"
+          class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-semibold text-white transition hover:bg-primaryDark"
+        >
+          <i class="fa-solid fa-envelope"></i>
+          hello@turnaworks.com
+        </a>
+        <a
+          href="#home"
+          class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-6 py-3.5 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+        >
+          <i class="fa-solid fa-arrow-up"></i>
+          Başa Dön
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-slate-100 bg-white">
+  <div
+    class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-slate-500 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+    <div class="flex items-center gap-3">
+      <!-- Replace with your actual logo path -->
+      <img src="/turnaworks-logo.svg" alt="TurnaWorks logosu" class="h-8 w-auto" />
+      <span>© 2026 TurnaWorks. Tüm hakları saklıdır.</span>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-5">
+      <a href="#about" class="transition hover:text-primary">Hakkında</a>
+      <a href="#services" class="transition hover:text-primary">Hizmetler</a>
+      <a href="#portfolio" class="transition hover:text-primary">Portföy</a>
+      <a href="#contact" class="transition hover:text-primary">İletişim</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
