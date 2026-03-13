@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurnaWorks | Mobile App Development for iOS & Android</title>
+  <meta
+    name="description"
+    content="TurnaWorks builds premium mobile applications for iOS and Android. Founded by Emirhan Kolver, with successful products like Mojify: AI Emoji Maker and Tolero: AI Calorie Counter."
+  />
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#546DE5',
+            primaryDark: '#4458C8',
+            soft: '#F6F8FF',
+            borderSoft: '#E8ECFF',
+            textMuted: '#64748B',
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(84, 109, 229, 0.10)',
+            card: '0 12px 40px rgba(15, 23, 42, 0.08)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <style>
+      html {
+          scroll-behavior: smooth;
+      }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+    <a href="#home" class="flex items-center gap-3">
+      <!-- Replace with your actual logo path -->
+      <img src="/assets/turnaworks-logo.svg" alt="TurnaWorks logo" class="h-10 w-auto" />
+      <div>
+        <div class="text-lg font-bold tracking-tight">TurnaWorks</div>
+        <div class="text-xs text-slate-500">Mobile App Development</div>
+      </div>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex">
+      <a href="#about" class="text-sm font-medium text-slate-600 transition hover:text-primary">About</a>
+      <a href="#services" class="text-sm font-medium text-slate-600 transition hover:text-primary">Services</a>
+      <a href="#portfolio" class="text-sm font-medium text-slate-600 transition hover:text-primary">Portfolio</a>
+      <a href="#contact" class="text-sm font-medium text-slate-600 transition hover:text-primary">Contact</a>
+    </nav>
+
+    <a
+      href="#contact"
+      class="hidden rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-primaryDark md:inline-flex"
+    >
+      Start a Project
+    </a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="home" class="relative overflow-hidden">
+  <div
+    class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(84,109,229,0.10),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(84,109,229,0.08),transparent_25%)]"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
+    <div>
+      <div
+        class="mb-5 inline-flex items-center gap-2 rounded-full border border-borderSoft bg-soft px-4 py-2 text-sm font-medium text-primary">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        iOS & Android App Development
+      </div>
+
+      <h1 class="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Building elegant mobile products for
+        <span class="text-primary">iOS and Android</span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-8 text-textMuted">
+        TurnaWorks is a mobile software studio founded by <strong>Emirhan Kolver</strong>,
+        focused on crafting high-quality mobile experiences across Apple and Android platforms.
+        From AI-powered consumer apps to health and utility products, we turn ideas into scalable mobile applications.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+        <a
+          href="#portfolio"
+          class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 font-semibold text-white shadow-soft transition hover:bg-primaryDark"
+        >
+          View Portfolio
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3.5 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+        >
+          Let’s Work Together
+        </a>
+      </div>
+
+      <div class="mt-10 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
+          <div class="text-2xl font-bold text-primary">2</div>
+          <div class="mt-1 text-sm text-slate-500">Published Products</div>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
+          <div class="text-2xl font-bold text-primary">#5</div>
+          <div class="mt-1 text-sm text-slate-500">Top Rank in TR & SE</div>
+        </div>
+        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
+          <div class="text-2xl font-bold text-primary">#10</div>
+          <div class="mt-1 text-sm text-slate-500">Top Rank in Germany</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="rounded-2xl border border-slate-100 bg-soft p-5">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="fa-brands fa-apple text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold">iOS Excellence</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Native and polished iPhone experiences with strong App Store standards and user-centered design.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-100 bg-soft p-5">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="fa-brands fa-android text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Android Ready</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Reliable Android applications built for performance, compatibility, and long-term growth.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-100 bg-soft p-5 sm:col-span-2">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold">AI-Driven Consumer Apps</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              TurnaWorks has hands-on experience building AI-powered products that users engage with daily,
+              from creative tools to health-focused tracking apps.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute -bottom-6 -left-6 hidden rounded-2xl border border-borderSoft bg-white px-5 py-4 shadow-soft md:block">
+        <div class="text-sm font-semibold text-slate-900">Founder</div>
+        <div class="text-sm text-slate-500">Emirhan Kolver</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="border-t border-slate-100 bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="rounded-full bg-soft px-4 py-2 text-sm font-semibold text-primary">About TurnaWorks</span>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        A focused mobile studio with product-first thinking
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-textMuted">
+        TurnaWorks specializes in mobile application development for
+        <strong>iOS</strong> and <strong>Android</strong>. Led by Emirhan Kolver,
+        the company builds modern, user-friendly applications with attention to
+        performance, usability, and market readiness.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <h3 class="text-lg font-semibold">End-to-End Product Development</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          From concept validation and UX planning to production-ready release workflows.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h3 class="text-lg font-semibold">Fast, Clean, Scalable Apps</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          High-performance mobile experiences with a strong focus on responsiveness and maintainability.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3 class="text-lg font-semibold">Built for Real Users</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Products designed not only to launch, but to grow, engage, and retain active users.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-soft">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="max-w-2xl">
+      <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Services</span>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        Mobile solutions tailored for modern businesses
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-textMuted">
+        TurnaWorks helps brands and founders create mobile applications that feel intuitive, polished, and
+        production-ready.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-4 md:grid-cols-2">
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-brands fa-apple mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">iOS App Development</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Native iPhone applications optimized for Apple users and App Store publishing.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-brands fa-android mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">Android App Development</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Robust Android experiences with broad device support and reliable performance.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-solid fa-brain mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">AI-Powered App Features</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Smart features for image analysis, content generation, and personalized user flows.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
+        <i class="fa-solid fa-cloud-arrow-up mb-4 text-2xl text-primary"></i>
+        <h3 class="text-lg font-semibold">Publishing & Launch Support</h3>
+        <p class="mt-3 text-sm leading-6 text-slate-600">
+          Assistance with App Store and Google Play submissions, optimization, and rollout.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-2xl">
+        <span class="rounded-full bg-soft px-4 py-2 text-sm font-semibold text-primary">Portfolio</span>
+        <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+          Featured apps by TurnaWorks
+        </h2>
+        <p class="mt-5 text-lg leading-8 text-textMuted">
+          Two consumer-focused products that reflect TurnaWorks’ experience in AI, usability, and mobile growth.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+
+      <!-- Mojify Card -->
+      <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
+        <div class="border-b border-slate-100 bg-soft p-8">
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-4">
+              <!-- Replace with your actual app logo path -->
+              <img src="/assets/mojify-logo.png" alt="Mojify logo"
+                   class="h-16 w-16 rounded-2xl object-cover shadow-sm" />
+              <div>
+                <h3 class="text-2xl font-bold">Mojify: AI Emoji Maker</h3>
+                <p class="mt-1 text-sm text-slate-500">AI-powered emoji creation for expressive messaging</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <p class="text-sm leading-7 text-slate-600">
+            Mojify offers a broad and creative emoji library, allowing users to turn their
+            <strong>photos</strong> or <strong>ideas</strong> into custom emojis. It includes an
+            <strong>iMessage extension</strong> and supports sharing across platforms like
+            <strong>WhatsApp</strong>, <strong>iMessage</strong>, and more.
+          </p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-face-smile"></i>
+                <span class="font-semibold">Creative Emoji Generation</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Transform photos and thoughts into unique, shareable emoji content.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-comments"></i>
+                <span class="font-semibold">Messaging Integration</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Built with iMessage extension support and easy use across chat platforms.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl bg-soft p-5 text-center">
+              <div class="text-2xl font-bold text-primary">#5</div>
+              <div class="mt-1 text-sm text-slate-500">Turkey</div>
+            </div>
+            <div class="rounded-2xl bg-soft p-5 text-center">
+              <div class="text-2xl font-bold text-primary">#5</div>
+              <div class="mt-1 text-sm text-slate-500">Sweden</div>
+            </div>
+            <div class="rounded-2xl bg-soft p-5 text-center">
+              <div class="text-2xl font-bold text-primary">#10</div>
+              <div class="mt-1 text-sm text-slate-500">Germany</div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primaryDark"
+            >
+              <i class="fa-brands fa-app-store-ios"></i>
+              View on App Store
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tolero Card -->
+      <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
+        <div class="border-b border-slate-100 bg-soft p-8">
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-4">
+              <!-- Replace with your actual app logo path -->
+              <img src="/assets/tolero-logo.png" alt="Tolero logo"
+                   class="h-16 w-16 rounded-2xl object-cover shadow-sm" />
+              <div>
+                <h3 class="text-2xl font-bold">Tolero: AI Calorie Counter</h3>
+                <p class="mt-1 text-sm text-slate-500">AI-assisted meal tracking and nutrition insights</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <p class="text-sm leading-7 text-slate-600">
+            Tolero helps users track meals by taking photos of what they eat.
+            The app provides nutritional statistics such as
+            <strong>calories</strong>, <strong>carbohydrates</strong>, <strong>protein</strong>, and
+            <strong>fat</strong>.
+            It can also share health data with
+            <strong>Apple Health</strong> and <strong>Google Health Connect</strong>,
+            making it easier to follow weight and consumption changes over time.
+          </p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-camera"></i>
+                <span class="font-semibold">Photo-Based Meal Logging</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Users can log meals quickly by simply taking a picture of their food.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-borderSoft p-5">
+              <div class="mb-2 flex items-center gap-2 text-primary">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span class="font-semibold">Health Data Sync</span>
+              </div>
+              <p class="text-sm text-slate-600">
+                Integrates with Apple Health and Google Health Connect for broader wellness tracking.
+              </p>
+            </div>
+          </div>
+
+          <ul class="mt-6 space-y-3 text-sm text-slate-600">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-primary"></i>
+              Daily meal and nutrient tracking
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-primary"></i>
+              Weight and consumption trend monitoring over time
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-primary"></i>
+              Available on both iOS and Android
+            </li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primaryDark"
+            >
+              <i class="fa-brands fa-app-store-ios"></i>
+              App Store
+            </a>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+            >
+              <i class="fa-brands fa-google-play"></i>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Why TurnaWorks -->
+<section class="bg-soft">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Why TurnaWorks</span>
+        <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+          Mobile expertise grounded in real product experience
+        </h2>
+        <p class="mt-6 text-lg leading-8 text-textMuted">
+          TurnaWorks is not just about building screens. It is about creating mobile products that users download,
+          enjoy, and continue using. With successful AI-powered applications already in the market,
+          the studio brings practical development knowledge and execution discipline to every project.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-rocket mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Launch-Ready Quality</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Apps prepared for store submission, performance, and user onboarding.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-user-check mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Founder-Led Execution</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Work directly with Emirhan Kolver for focused communication and product clarity.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-puzzle-piece mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Cross-Platform Thinking</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Seamless planning for iOS and Android ecosystem requirements.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
+          <i class="fa-solid fa-lightbulb mb-4 text-2xl text-primary"></i>
+          <h3 class="font-semibold">Product-Driven Approach</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Strong balance of user value, technical quality, and business potential.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="bg-white">
+  <div class="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+    <div
+      class="rounded-3xl border border-borderSoft bg-gradient-to-br from-soft to-white p-10 text-center shadow-card sm:p-14">
+      <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Contact</span>
+      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+        Have a mobile app idea?
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-textMuted">
+        TurnaWorks helps founders and businesses create polished mobile experiences for iOS and Android.
+        If you are looking to build your next product, let’s talk.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:hello@turnaworks.com"
+          class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-semibold text-white transition hover:bg-primaryDark"
+        >
+          <i class="fa-solid fa-envelope"></i>
+          hello@turnaworks.com
+        </a>
+        <a
+          href="#home"
+          class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-6 py-3.5 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+        >
+          <i class="fa-solid fa-arrow-up"></i>
+          Back to Top
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-slate-100 bg-white">
+  <div
+    class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-slate-500 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+    <div class="flex items-center gap-3">
+      <!-- Replace with your actual logo path -->
+      <img src="/assets/turnaworks-logo.svg" alt="TurnaWorks logo" class="h-8 w-auto" />
+      <span>© 2026 TurnaWorks. All rights reserved.</span>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-5">
+      <a href="#about" class="transition hover:text-primary">About</a>
+      <a href="#services" class="transition hover:text-primary">Services</a>
+      <a href="#portfolio" class="transition hover:text-primary">Portfolio</a>
+      <a href="#contact" class="transition hover:text-primary">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
