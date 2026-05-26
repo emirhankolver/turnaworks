@@ -1,0 +1,27 @@
+# TurnaWorks - App Development
+
+TurnaWorks is a software company specialized in developing modern mobile applications for iOS and Android platforms. We bring ideas to life with user-focused, scalable, and high-quality app development services.
+
+## Key Pages
+
+- Home: https://turnaworks.com/
+- About: https://turnaworks.com/#about
+- Services: https://turnaworks.com/#services
+- Contact: https://turnaworks.com/#contact
+
+## Services
+
+- **Mobile App Development**: Native and cross-platform mobile applications for iOS and Android using Swift, Kotlin, and Flutter.
+- **Web App Development**: Responsive, fast, and user-friendly web applications with modern web technologies.
+- **UI/UX Design**: Aesthetic and functional interface designs focused on user experience.
+- **API & Backend**: Scalable, secure, and high-performance backend infrastructure and API solutions.
+
+## Contact
+
+- Email: support@turnaworks.com
+- Location: Bursa, Turkey
+- LinkedIn: https://www.linkedin.com/in/emirhankolver/
+- GitHub: https://github.com/emirhankolver?tab=repositories
+- Instagram: https://www.instagram.com/kolver16
+- App Store: https://apps.apple.com/us/developer/ali-emirhan-kolver/id1761762498
+- Google Play: https://play.google.com/store/apps/dev?id=5591039967834690061

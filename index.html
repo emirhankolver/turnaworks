@@ -1,578 +1,841 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TurnaWorks | Mobile App Development for iOS & Android</title>
-  <meta
-    name="description"
-    content="TurnaWorks builds premium mobile applications for iOS and Android. Founded by Emirhan Kolver, with successful products like Mojify: AI Emoji Maker and Tolero: AI Calorie Counter."
-  />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TurnaWorks | App Development</title>
+    <meta name="description"
+          content="TurnaWorks develops modern mobile applications for iOS and Android. We bring your applications to life."/>
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
+    <meta name="theme-color" content="#546DE5"/>
 
-  <!-- Apple Touch Icon -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#546DE5',
+                        'primary-dark': '#4458C8',
+                        'primary-light': '#7B8EED',
+                        'primary-glow': 'rgba(84, 109, 229, 0.15)',
+                        surface: '#F8F9FF',
+                        'text-dark': '#1A1A2E',
+                        'text-body': '#4A4A6A',
+                        'text-muted': '#8A8AA0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        card: '0 4px 24px rgba(26, 26, 46, 0.06)',
+                        'card-hover': '0 12px 40px rgba(26, 26, 46, 0.10)',
+                        glow: '0 0 30px rgba(84, 109, 229, 0.15)',
+                    },
+                },
+            },
+        };
+    </script>
 
-  <!-- Web App Manifest -->
-  <link rel="manifest" href="/site.webmanifest">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"/>
 
-  <!-- Theme Color (Mobil tarayıcı için) -->
-  <meta name="theme-color" content="#ffffff">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#546DE5',
-            primaryDark: '#4458C8',
-            soft: '#F6F8FF',
-            borderSoft: '#E8ECFF',
-            textMuted: '#64748B',
-          },
-          boxShadow: {
-            soft: '0 10px 30px rgba(84, 109, 229, 0.10)',
-            card: '0 12px 40px rgba(15, 23, 42, 0.08)',
-          },
-        },
-      },
-    };
-  </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
 
-  <style>
-      html {
-          scroll-behavior: smooth;
-      }
-  </style>
+        /* Geometric background pattern */
+        .hero-pattern {
+            background-image: radial-gradient(circle at 20% 50%, rgba(84, 109, 229, 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(84, 109, 229, 0.04) 0%, transparent 50%),
+            radial-gradient(circle at 50% 80%, rgba(84, 109, 229, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            background-image: linear-gradient(rgba(84, 109, 229, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(84, 109, 229, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Service card hover */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(26, 26, 46, 0.10);
+            border-color: rgba(84, 109, 229, 0.3);
+        }
+
+        /* Stat number animation */
+        .stat-number {
+            background: linear-gradient(135deg, #546DE5, #7B8EED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-open {
+            max-height: 400px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Focus ring */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #546DE5;
+            box-shadow: 0 0 0 3px rgba(84, 109, 229, 0.15);
+        }
+
+        /* Language toggle active */
+        .lang-active {
+            background-color: #546DE5;
+            color: white;
+        }
+
+        /* Nav link active */
+        .nav-link.active {
+            color: #546DE5;
+        }
+
+        /* Hamburger animation */
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-open .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger-open .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-open .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
 </head>
-<body class="bg-white text-slate-900 antialiased">
+<body class="bg-white text-text-dark antialiased">
 
-<!-- Header -->
-<header class="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-    <a href="#home" class="flex items-center gap-3">
-      <!-- Replace with your actual logo path -->
-      <img src="/turnaworks-logo.svg" alt="TurnaWorks logo" class="h-10 w-auto" />
-      <div>
-        <div class="text-lg font-bold tracking-tight">TurnaWorks</div>
-        <div class="text-xs text-slate-500">Mobile App Development</div>
-      </div>
-    </a>
+<!-- ==================== HEADER ==================== -->
+<header id="header"
+        class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-md transition-all duration-300">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-3 group">
+            <img src="/turnaworks-logo.svg" alt="TurnaWorks"
+                 class="h-10 w-10 transition-all duration-300 group-hover:shadow-glow rounded-xl"/>
+            <span class="text-lg font-extrabold tracking-tight text-text-dark">TurnaWorks</span>
+        </a>
 
-    <nav class="hidden items-center gap-8 md:flex">
-      <a href="#about" class="text-sm font-medium text-slate-600 transition hover:text-primary">About</a>
-      <a href="#services" class="text-sm font-medium text-slate-600 transition hover:text-primary">Services</a>
-      <a href="#portfolio" class="text-sm font-medium text-slate-600 transition hover:text-primary">Portfolio</a>
-      <a href="#contact" class="text-sm font-medium text-slate-600 transition hover:text-primary">Contact</a>
-    </nav>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-1">
+            <a href="#hero" data-nav="hero" data-i18n="nav_hero"
+               class="nav-link px-4 py-2 text-sm font-medium text-text-body rounded-lg transition-all duration-200 hover:text-primary hover:bg-primary-glow">Ana
+                Sayfa</a>
+            <a href="#about" data-nav="about" data-i18n="nav_about"
+               class="nav-link px-4 py-2 text-sm font-medium text-text-body rounded-lg transition-all duration-200 hover:text-primary hover:bg-primary-glow">Hakkımızda</a>
+            <a href="#services" data-nav="services" data-i18n="nav_services"
+               class="nav-link px-4 py-2 text-sm font-medium text-text-body rounded-lg transition-all duration-200 hover:text-primary hover:bg-primary-glow">Hizmetler</a>
+            <a href="#contact" data-nav="contact" data-i18n="nav_contact"
+               class="nav-link px-4 py-2 text-sm font-medium text-text-body rounded-lg transition-all duration-200 hover:text-primary hover:bg-primary-glow">İletişim</a>
+        </nav>
 
-    <a
-      href="#contact"
-      class="hidden rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-primaryDark md:inline-flex"
-    >
-      Start a Project
-    </a>
-  </div>
+        <!-- Right side -->
+        <div class="flex items-center gap-3">
+            <!-- Language Toggle -->
+            <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden text-xs font-semibold">
+                <button id="lang-tr"
+                        class="lang-btn px-3 py-1.5 transition-all duration-200 text-text-muted hover:text-text-dark">TR
+                </button>
+                <button id="lang-en" class="lang-btn px-3 py-1.5 transition-all duration-200 lang-active">EN</button>
+            </div>
+
+            <!-- CTA Button (Desktop) -->
+            <a href="#contact" data-i18n="nav_cta"
+               class="hidden md:inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary-dark hover:shadow-glow">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>İletişime Geç</span>
+            </a>
+
+            <!-- Hamburger (Mobile) -->
+            <button id="hamburger"
+                    class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    aria-label="Menü">
+                <span class="hamburger-line block w-5 h-0.5 bg-text-dark rounded-full"></span>
+                <span class="hamburger-line block w-5 h-0.5 bg-text-dark rounded-full"></span>
+                <span class="hamburger-line block w-5 h-0.5 bg-text-dark rounded-full"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+         class="md:hidden overflow-hidden max-h-0 opacity-0 invisible transition-all duration-300 ease-in-out border-t border-gray-100 bg-white">
+        <div class="px-5 py-4 space-y-1">
+            <a href="#hero" data-nav="hero" data-i18n="nav_hero"
+               class="block px-4 py-3 text-sm font-medium text-text-body rounded-lg hover:text-primary hover:bg-primary-glow transition-all">Ana
+                Sayfa</a>
+            <a href="#about" data-nav="about" data-i18n="nav_about"
+               class="block px-4 py-3 text-sm font-medium text-text-body rounded-lg hover:text-primary hover:bg-primary-glow transition-all">Hakkımızda</a>
+            <a href="#services" data-nav="services" data-i18n="nav_services"
+               class="block px-4 py-3 text-sm font-medium text-text-body rounded-lg hover:text-primary hover:bg-primary-glow transition-all">Hizmetler</a>
+            <a href="#contact" data-nav="contact" data-i18n="nav_contact"
+               class="block px-4 py-3 text-sm font-medium text-text-body rounded-lg hover:text-primary hover:bg-primary-glow transition-all">İletişim</a>
+            <a href="#contact" data-i18n="nav_cta"
+               class="mt-3 flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-primary-dark">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>İletişime Geç</span>
+            </a>
+        </div>
+    </div>
 </header>
 
-<!-- Hero -->
-<section id="home" class="relative overflow-hidden">
-  <div
-    class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(84,109,229,0.10),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(84,109,229,0.08),transparent_25%)]"></div>
+<!-- ==================== HERO ==================== -->
+<section id="hero" class="relative min-h-screen flex items-center hero-pattern hero-grid overflow-hidden pt-16">
+    <!-- Decorative elements -->
+    <div class="absolute top-20 left-10 w-72 h-72 border border-primary/10 rounded-full -z-5"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 border border-primary/8 rounded-full -z-5"></div>
+    <div class="absolute top-40 right-1/4 w-4 h-4 bg-primary/20 rounded-full -z-5"></div>
+    <div class="absolute bottom-40 left-1/3 w-6 h-6 bg-primary/15 rounded-full -z-5"></div>
 
-  <div class="mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
-    <div>
-      <div
-        class="mb-5 inline-flex items-center gap-2 rounded-full border border-borderSoft bg-soft px-4 py-2 text-sm font-medium text-primary">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-        iOS & Android App Development
-      </div>
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-12 lg:py-20">
+            <!-- Left Column -->
+            <div class="max-w-xl">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                    <span data-i18n="hero_badge">iOS & Android Uygulama Geliştirme</span>
+                </div>
 
-      <h1 class="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-        Building elegant mobile products for
-        <span class="text-primary">iOS and Android</span>
-      </h1>
+                <!-- Heading -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+                    <span data-i18n="hero_title_1">Uygulamalarınızı</span><br/>
+                    <span class="text-primary" data-i18n="hero_title_2">Hayata Geçiriyoruz</span>
+                </h1>
 
-      <p class="mt-6 max-w-xl text-lg leading-8 text-textMuted">
-        TurnaWorks is a mobile software company founded by <strong>Emirhan Kolver</strong>,
-        focused on crafting high-quality mobile experiences across Apple and Android platforms.
-        From AI-powered consumer apps to health and utility products, we turn ideas into scalable mobile applications.
-      </p>
+                <!-- Subtitle -->
+                <p class="mt-6 text-lg leading-relaxed text-text-body max-w-lg" data-i18n="hero_desc">
+                    TurnaWorks olarak, iOS ve Android platformlarında modern, kullanıcı odaklı ve ölçeklenebilir mobil
+                    uygulamalar geliştiriyoruz. Fikrinizden App Store ve Google Play'e kadar tüm süreçte yanınızdayız.
+                </p>
 
-      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-        <a
-          href="#portfolio"
-          class="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 font-semibold text-white shadow-soft transition hover:bg-primaryDark"
-        >
-          View Portfolio
-        </a>
-        <a
-          href="#contact"
-          class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3.5 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-        >
-          Let’s Work Together
-        </a>
-      </div>
+                <!-- CTA Buttons -->
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                    <a href="#services"
+                       class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary-dark hover:shadow-glow">
+                        <span data-i18n="hero_cta_1">Hizmetlerimiz</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#contact"
+                       class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-7 py-3.5 text-sm font-semibold text-text-body transition-all duration-200 hover:border-primary hover:text-primary">
+                        <span data-i18n="hero_cta_2">İletişime Geç</span>
+                    </a>
+                </div>
 
-      <div class="mt-10 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
-          <div class="text-2xl font-bold text-primary">2</div>
-          <div class="mt-1 text-sm text-slate-500">Published Products</div>
+                <!-- Stats -->
+                <div class="mt-12 grid grid-cols-3 gap-6">
+                    <div>
+                        <div class="stat-number text-3xl font-extrabold">50+</div>
+                        <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_1">Tamamlanan Proje</div>
+                    </div>
+                    <div>
+                        <div class="stat-number text-3xl font-extrabold">5+</div>
+                        <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_2">Yıllık Deneyim</div>
+                    </div>
+                    <div>
+                        <div class="stat-number text-3xl font-extrabold">20+</div>
+                        <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_3">Mutlu Müşteri</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Visual -->
+            <div class="relative hidden lg:block">
+                <div class="relative">
+                    <!-- Main card -->
+                    <div class="rounded-2xl border border-gray-100 bg-white p-8 shadow-card">
+                        <div class="grid gap-5">
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-surface">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
+                                    <i class="fa-brands fa-apple text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-sm" data-i18n="hero_card_1_title">iOS Geliştirme</h3>
+                                    <p class="text-xs text-text-muted mt-0.5" data-i18n="hero_card_1_desc">Native Swift
+                                        ile premium iOS uygulamaları</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-surface">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
+                                    <i class="fa-brands fa-android text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-sm" data-i18n="hero_card_2_title">Android
+                                        Geliştirme</h3>
+                                    <p class="text-xs text-text-muted mt-0.5" data-i18n="hero_card_2_desc">Kotlin ile
+                                        yüksek performanslı Android uygulamaları</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-surface">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
+                                    <i class="fa-solid fa-palette text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-sm" data-i18n="hero_card_3_title">UI/UX Tasarım</h3>
+                                    <p class="text-xs text-text-muted mt-0.5" data-i18n="hero_card_3_desc">Kullanıcı
+                                        odaklı, modern arayüz tasarımları</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-surface">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
+                                    <i class="fa-solid fa-server text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-sm" data-i18n="hero_card_4_title">API & Backend</h3>
+                                    <p class="text-xs text-text-muted mt-0.5" data-i18n="hero_card_4_desc">
+                                        Ölçeklenebilir backend ve API çözümleri</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative dot -->
+                    <div class="absolute -top-3 -right-3 w-6 h-6 bg-primary rounded-full"></div>
+                    <div class="absolute -bottom-3 -left-3 w-4 h-4 bg-primary/40 rounded-full"></div>
+                </div>
+            </div>
         </div>
-        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
-          <div class="text-2xl font-bold text-primary">#5</div>
-          <div class="mt-1 text-sm text-slate-500">Top Rank in Türkiye & Sweden</div>
-        </div>
-        <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-card">
-          <div class="text-2xl font-bold text-primary">#10</div>
-          <div class="mt-1 text-sm text-slate-500">Top Rank in Germany</div>
-        </div>
-      </div>
     </div>
-
-    <div class="relative">
-      <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
-        <div class="grid gap-5 sm:grid-cols-2">
-          <div class="rounded-2xl border border-slate-100 bg-soft p-5">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <i class="fa-brands fa-apple text-xl"></i>
-            </div>
-            <h3 class="text-lg font-semibold">iOS Excellence</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-              Native and polished iPhone experiences with strong App Store standards and user-centered design.
-            </p>
-          </div>
-
-          <div class="rounded-2xl border border-slate-100 bg-soft p-5">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <i class="fa-brands fa-android text-xl"></i>
-            </div>
-            <h3 class="text-lg font-semibold">Android Ready</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-              Reliable Android applications built for performance, compatibility, and long-term growth.
-            </p>
-          </div>
-
-          <div class="rounded-2xl border border-slate-100 bg-soft p-5 sm:col-span-2">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
-            </div>
-            <h3 class="text-lg font-semibold">AI-Driven Consumer Apps</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-600">
-              TurnaWorks has hands-on experience building AI-powered products that users engage with daily,
-              from creative tools to health-focused tracking apps.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- About -->
-<section id="about" class="border-t border-slate-100 bg-white">
-  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div class="mx-auto max-w-3xl text-center">
-      <span class="rounded-full bg-soft px-4 py-2 text-sm font-semibold text-primary">About TurnaWorks</span>
-      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-        A focused mobile studio with product-first thinking
-      </h2>
-      <p class="mt-6 text-lg leading-8 text-textMuted">
-        TurnaWorks specializes in mobile application development for
-        <strong>iOS</strong> and <strong>Android</strong>. The company builds modern, user-friendly applications with attention to
-        performance, usability, and market readiness.
-      </p>
+<!-- ==================== ABOUT ==================== -->
+<section id="about" class="py-20 lg:py-28 bg-surface">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <!-- Left: Description -->
+            <div>
+                <span class="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary mb-4"
+                      data-i18n="about_badge">Hakkımızda</span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" data-i18n="about_title">Mobil Uygulama
+                    Geliştirmede Uzman Ortak</h2>
+                <p class="mt-6 text-text-body leading-relaxed" data-i18n="about_desc">
+                    TurnaWorks, iOS ve Android platformlarında uygulama geliştirme konusunda uzmanlaşmış bir yazılım
+                    şirketidir. Modern teknolojiler ve kullanıcı odaklı tasarım anlayışıyla, işletmelerin ve
+                    girişimcilerin fikirlerini hayata geçiriyoruz. Her projede kalite, performans ve kullanılabilirliği
+                    ön planda tutuyoruz.
+                </p>
+                <div class="mt-8 space-y-4">
+                    <div class="flex items-start gap-3">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm" data-i18n="about_point_1_title">Uçtan Uca Hizmet</h4>
+                            <p class="text-sm text-text-muted" data-i18n="about_point_1_desc">Fikir aşamasından
+                                yayınlama ve sonrasına kadar tüm süreçte destek</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm" data-i18n="about_point_2_title">Şeffaf İletişim</h4>
+                            <p class="text-sm text-text-muted" data-i18n="about_point_2_desc">Düzenli güncellemeler ve
+                                açık iletişim ile projenizin kontrolü sizde</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm" data-i18n="about_point_3_title">Modern Teknolojiler</h4>
+                            <p class="text-sm text-text-muted" data-i18n="about_point_3_desc">Swift, Kotlin, Flutter ve
+                                modern backend teknolojileri ile geliştirme</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Stat Cards -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-card text-center">
+                    <div class="flex justify-center mb-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <i class="fa-solid fa-rocket text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number text-3xl font-extrabold">50+</div>
+                    <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_1">Tamamlanan Proje</div>
+                </div>
+                <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-card text-center">
+                    <div class="flex justify-center mb-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <i class="fa-solid fa-calendar-check text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number text-3xl font-extrabold">5+</div>
+                    <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_2">Yıllık Deneyim</div>
+                </div>
+                <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-card text-center">
+                    <div class="flex justify-center mb-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <i class="fa-solid fa-users text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number text-3xl font-extrabold">20+</div>
+                    <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_3">Mutlu Müşteri</div>
+                </div>
+                <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-card text-center">
+                    <div class="flex justify-center mb-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <i class="fa-solid fa-globe text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number text-3xl font-extrabold">10+</div>
+                    <div class="mt-1 text-xs text-text-muted font-medium" data-i18n="stat_4">Ülkede Yayında</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="mt-14 grid gap-6 md:grid-cols-3">
-      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
-        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <h3 class="text-lg font-semibold">End-to-End Product Development</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          From concept validation and UX planning to production-ready release workflows.
-        </p>
-      </div>
-
-      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
-        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-          <i class="fa-solid fa-bolt"></i>
-        </div>
-        <h3 class="text-lg font-semibold">Fast, Clean, Scalable Apps</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          High-performance mobile experiences with a strong focus on responsiveness and maintainability.
-        </p>
-      </div>
-
-      <div class="rounded-3xl border border-slate-100 p-8 shadow-card">
-        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-          <i class="fa-solid fa-chart-line"></i>
-        </div>
-        <h3 class="text-lg font-semibold">Built for Real Users</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          Products designed not only to launch, but to grow, engage, and retain active users.
-        </p>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- Services -->
-<section id="services" class="bg-soft">
-  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div class="max-w-2xl">
-      <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Services</span>
-      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-        Mobile solutions tailored for modern businesses
-      </h2>
-      <p class="mt-5 text-lg leading-8 text-textMuted">
-        TurnaWorks helps brands and founders create mobile applications that feel intuitive, polished, and
-        production-ready.
-      </p>
+<!-- ==================== SERVICES ==================== -->
+<section id="services" class="py-20 lg:py-28 bg-white">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto">
+            <span class="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary mb-4"
+                  data-i18n="services_badge">Hizmetler</span>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" data-i18n="services_title">Neler Sunuyoruz</h2>
+            <p class="mt-4 text-text-body leading-relaxed" data-i18n="services_desc">
+                İhtiyacınıza özel, modern ve ölçeklenebilir mobil çözümlerle fikirlerinizi gerçeğe dönüştürüyoruz.
+            </p>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="service-card rounded-2xl border border-gray-100 bg-white p-8 shadow-card cursor-default">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+                    <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold" data-i18n="service_1_title">Mobil Uygulama Geliştirme</h3>
+                <p class="mt-3 text-sm text-text-body leading-relaxed" data-i18n="service_1_desc">
+                    iOS ve Android için native veya cross-platform yüksek kaliteli mobil uygulamalar geliştiriyoruz.
+                </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card rounded-2xl border border-gray-100 bg-white p-8 shadow-card cursor-default">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+                    <i class="fa-solid fa-laptop-code text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold" data-i18n="service_2_title">Web Uygulama Geliştirme</h3>
+                <p class="mt-3 text-sm text-text-body leading-relaxed" data-i18n="service_2_desc">
+                    Modern web teknolojileri ile responsive, hızlı ve kullanıcı dostu web uygulamaları oluşturuyoruz.
+                </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card rounded-2xl border border-gray-100 bg-white p-8 shadow-card cursor-default">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+                    <i class="fa-solid fa-pen-ruler text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold" data-i18n="service_3_title">UI/UX Tasarım</h3>
+                <p class="mt-3 text-sm text-text-body leading-relaxed" data-i18n="service_3_desc">
+                    Kullanıcı deneyimini ön planda tutan, estetik ve işlevsel arayüz tasarımları hazırlıyoruz.
+                </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="service-card rounded-2xl border border-gray-100 bg-white p-8 shadow-card cursor-default">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+                    <i class="fa-solid fa-cloud text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold" data-i18n="service_4_title">API & Backend</h3>
+                <p class="mt-3 text-sm text-text-body leading-relaxed" data-i18n="service_4_desc">
+                    Ölçeklenebilir, güvenli ve yüksek performanslı backend altyapısı ile API çözümleri sunuyoruz.
+                </p>
+            </div>
+        </div>
     </div>
-
-    <div class="mt-14 grid gap-6 lg:grid-cols-4 md:grid-cols-2">
-      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
-        <i class="fa-brands fa-apple mb-4 text-2xl text-primary"></i>
-        <h3 class="text-lg font-semibold">iOS App Development</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          Native iPhone applications optimized for Apple users and App Store publishing.
-        </p>
-      </div>
-
-      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
-        <i class="fa-brands fa-android mb-4 text-2xl text-primary"></i>
-        <h3 class="text-lg font-semibold">Android App Development</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          Robust Android experiences with broad device support and reliable performance.
-        </p>
-      </div>
-
-      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
-        <i class="fa-solid fa-brain mb-4 text-2xl text-primary"></i>
-        <h3 class="text-lg font-semibold">AI-Powered App Features</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          Smart features for image analysis, content generation, and personalized user flows.
-        </p>
-      </div>
-
-      <div class="rounded-3xl border border-borderSoft bg-white p-8 shadow-card">
-        <i class="fa-solid fa-cloud-arrow-up mb-4 text-2xl text-primary"></i>
-        <h3 class="text-lg font-semibold">Publishing & Launch Support</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
-          Assistance with App Store and Google Play submissions, optimization, and rollout.
-        </p>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- Portfolio -->
-<section id="portfolio" class="bg-white">
-  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-      <div class="max-w-2xl">
-        <span class="rounded-full bg-soft px-4 py-2 text-sm font-semibold text-primary">Portfolio</span>
-        <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-          Featured apps by TurnaWorks
-        </h2>
-        <p class="mt-5 text-lg leading-8 text-textMuted">
-          Two consumer-focused products that reflect TurnaWorks’ experience in AI, usability, and mobile growth.
-        </p>
-      </div>
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="py-20 lg:py-28 bg-surface">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+            <!-- Left: Contact Info -->
+            <div>
+                <span class="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary mb-4"
+                      data-i18n="contact_badge">İletişim</span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" data-i18n="contact_title">Bize Ulaşın</h2>
+                <p class="mt-4 text-text-body leading-relaxed" data-i18n="contact_desc">
+                    Projeniz hakkında konuşmak, fikirlerinizi paylaşmak veya sorularınızı iletmek için bize ulaşın. Size
+                    en kısa sürede dönüş yapacağız.
+                </p>
+
+                <div class="mt-10 space-y-6">
+                    <!-- Email -->
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-text-muted font-medium" data-i18n="contact_email_label">E-posta</p>
+                            <a href="mailto:support@turnaworks.com"
+                               class="font-semibold text-text-dark hover:text-primary transition-colors">support@turnaworks.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-text-muted font-medium" data-i18n="contact_location_label">Konum</p>
+                            <p class="font-semibold text-text-dark" data-i18n="contact_location_value">Bursa,
+                                Türkiye</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="rounded-2xl border border-gray-100 bg-white p-8 shadow-card">
+                <form id="contact-form" action="mailto:support@turnaworks.com" method="post" enctype="text/plain"
+                      class="space-y-5">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-text-dark mb-1.5" data-i18n="form_name">Adınız
+                            Soyadınız</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-text-dark placeholder:text-text-muted transition-all duration-200"
+                               placeholder="Adınız Soyadınız"/>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-text-dark mb-1.5"
+                               data-i18n="form_email">E-posta Adresiniz</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-text-dark placeholder:text-text-muted transition-all duration-200"
+                               placeholder="ornek@email.com"/>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-text-dark mb-1.5"
+                               data-i18n="form_message">Mesajınız</label>
+                        <textarea id="message" name="message" rows="4" required
+                                  class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-text-dark placeholder:text-text-muted transition-all duration-200 resize-none"
+                                  placeholder="Mesajınızı yazın..."></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary-dark hover:shadow-glow flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span data-i18n="form_submit">Mesaj Gönder</span>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-[#0F0F1A] text-white">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Logo & Copyright -->
+            <div class="flex items-center gap-3">
+                <img src="/turnaworks-logo.svg" alt="TurnaWorks" class="h-9 w-9 rounded-lg"/>
+                <span class="text-sm text-gray-400">© 2026 TurnaWorks.</span>
+            </div>
 
-      <!-- Mojify Card -->
-      <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
-        <div class="border-b border-slate-100 bg-soft p-8">
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <!-- Social Links -->
             <div class="flex items-center gap-4">
-              <!-- Replace with your actual app logo path -->
-              <img src="/mojify-logo.png" alt="Mojify logo"
-                   class="h-16 w-16 rounded-2xl object-cover shadow-sm" />
-              <div>
-                <h3 class="text-2xl font-bold">Mojify: AI Emoji Maker</h3>
-                <p class="mt-1 text-sm text-slate-500">AI-powered emoji creation for expressive messaging</p>
-              </div>
+                <a href="https://www.linkedin.com/in/emirhankolver/" target="_blank" rel="noopener noreferrer"
+                   class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-200"
+                   aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/emirhankolver?tab=repositories" target="_blank" rel="noopener noreferrer"
+                   class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-200"
+                   aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/kolver16" target="_blank" rel="noopener noreferrer"
+                   class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-200"
+                   aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://apps.apple.com/us/developer/ali-emirhan-kolver/id1761762498" target="_blank"
+                   rel="noopener noreferrer"
+                   class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-200"
+                   aria-label="App Store">
+                    <i class="fa-brands fa-app-store"></i>
+                </a>
+                <a href="https://play.google.com/store/apps/dev?id=5591039967834690061" target="_blank"
+                   rel="noopener noreferrer"
+                   class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-200"
+                   aria-label="Google Play">
+                    <i class="fa-brands fa-google-play"></i>
+                </a>
             </div>
-          </div>
         </div>
-
-        <div class="p-8">
-          <p class="text-sm leading-7 text-slate-600">
-            Mojify offers a broad and creative emoji library, allowing users to turn their
-            <strong>photos</strong> or <strong>ideas</strong> into custom emojis. It includes an
-            <strong>iMessage extension</strong> and supports sharing across platforms like
-            <strong>WhatsApp</strong>, <strong>iMessage</strong>, and more.
-          </p>
-
-          <div class="mt-6 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-2xl border border-borderSoft p-5">
-              <div class="mb-2 flex items-center gap-2 text-primary">
-                <i class="fa-solid fa-face-smile"></i>
-                <span class="font-semibold">Creative Emoji Generation</span>
-              </div>
-              <p class="text-sm text-slate-600">
-                Transform photos and thoughts into unique, shareable emoji content.
-              </p>
-            </div>
-
-            <div class="rounded-2xl border border-borderSoft p-5">
-              <div class="mb-2 flex items-center gap-2 text-primary">
-                <i class="fa-solid fa-comments"></i>
-                <span class="font-semibold">Messaging Integration</span>
-              </div>
-              <p class="text-sm text-slate-600">
-                Built with iMessage extension support and easy use across chat platforms.
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-6 grid gap-4 sm:grid-cols-3">
-            <div class="rounded-2xl bg-soft p-5 text-center">
-              <div class="text-2xl font-bold text-primary">#2</div>
-              <div class="mt-1 text-sm text-slate-500">Turkey</div>
-              <div class="mt-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                Graphic & Design
-              </div>
-            </div>
-
-            <div class="rounded-2xl bg-soft p-5 text-center">
-              <div class="text-2xl font-bold text-primary">#3</div>
-              <div class="mt-1 text-sm text-slate-500">Sweden</div>
-              <div class="mt-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                Graphic & Design
-              </div>
-            </div>
-
-            <div class="rounded-2xl bg-soft p-5 text-center">
-              <div class="text-2xl font-bold text-primary">#15</div>
-              <div class="mt-1 text-sm text-slate-500">Germany</div>
-              <div class="mt-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                Graphic & Design
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8">
-            <a
-              href="https://apps.apple.com/us/app/mojify-ai-emoji-maker/id6756113990"
-              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primaryDark"
-            >
-              <i class="fa-brands fa-app-store-ios"></i>
-              View on App Store
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Tolero Card -->
-      <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
-        <div class="border-b border-slate-100 bg-soft p-8">
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div class="flex items-center gap-4">
-              <!-- Replace with your actual app logo path -->
-              <img src="/tolero-logo.png" alt="Tolero logo"
-                   class="h-16 w-16 rounded-2xl object-cover shadow-sm" />
-              <div>
-                <h3 class="text-2xl font-bold">Tolero: AI Calorie Counter</h3>
-                <p class="mt-1 text-sm text-slate-500">AI-assisted meal tracking and nutrition insights</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-8">
-          <p class="text-sm leading-7 text-slate-600">
-            Tolero helps users track meals by taking photos of what they eat.
-            The app provides nutritional statistics such as
-            <strong>calories</strong>, <strong>carbohydrates</strong>, <strong>protein</strong>, and
-            <strong>fat</strong>.
-            It can also share health data with
-            <strong>Apple Health</strong> and <strong>Google Health Connect</strong>,
-            making it easier to follow weight and consumption changes over time.
-          </p>
-
-          <div class="mt-6 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-2xl border border-borderSoft p-5">
-              <div class="mb-2 flex items-center gap-2 text-primary">
-                <i class="fa-solid fa-camera"></i>
-                <span class="font-semibold">Photo-Based Meal Logging</span>
-              </div>
-              <p class="text-sm text-slate-600">
-                Users can log meals quickly by simply taking a picture of their food.
-              </p>
-            </div>
-
-            <div class="rounded-2xl border border-borderSoft p-5">
-              <div class="mb-2 flex items-center gap-2 text-primary">
-                <i class="fa-solid fa-heart-pulse"></i>
-                <span class="font-semibold">Health Data Sync</span>
-              </div>
-              <p class="text-sm text-slate-600">
-                Integrates with Apple Health and Google Health Connect for broader wellness tracking.
-              </p>
-            </div>
-          </div>
-
-          <ul class="mt-6 space-y-3 text-sm text-slate-600">
-            <li class="flex items-start gap-3">
-              <i class="fa-solid fa-check mt-1 text-primary"></i>
-              Daily meal and nutrient tracking
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fa-solid fa-check mt-1 text-primary"></i>
-              Weight and consumption trend monitoring over time
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fa-solid fa-check mt-1 text-primary"></i>
-              Available on both iOS and Android
-            </li>
-          </ul>
-
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://apps.apple.com/us/app/tolero-ai-calorie-tracker/id6745557418"
-              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primaryDark"
-            >
-              <i class="fa-brands fa-app-store-ios"></i>
-              View on App Store
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.tolero.app"
-              class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-            >
-              <i class="fa-brands fa-google-play"></i>
-              View on Google Play
-            </a>
-          </div>
-        </div>
-      </article>
-
     </div>
-  </div>
-</section>
-
-<!-- Why TurnaWorks -->
-<section class="bg-soft">
-  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-      <div>
-        <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Why TurnaWorks</span>
-        <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-          Mobile expertise grounded in real product experience
-        </h2>
-        <p class="mt-6 text-lg leading-8 text-textMuted">
-          TurnaWorks is not just about building screens. It is about creating mobile products that users download,
-          enjoy, and continue using. With successful AI-powered applications already in the market,
-          the studio brings practical development knowledge and execution discipline to every project.
-        </p>
-      </div>
-
-      <div class="grid gap-5 sm:grid-cols-2">
-        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
-          <i class="fa-solid fa-rocket mb-4 text-2xl text-primary"></i>
-          <h3 class="font-semibold">Launch-Ready Quality</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600">
-            Apps prepared for store submission, performance, and user onboarding.
-          </p>
-        </div>
-
-        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
-          <i class="fa-solid fa-user-check mb-4 text-2xl text-primary"></i>
-          <h3 class="font-semibold">Founder-Led Execution</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600">
-            Work directly with us for focused communication and product clarity.
-          </p>
-        </div>
-
-        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
-          <i class="fa-solid fa-puzzle-piece mb-4 text-2xl text-primary"></i>
-          <h3 class="font-semibold">Cross-Platform Thinking</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600">
-            Seamless planning for iOS and Android ecosystem requirements.
-          </p>
-        </div>
-
-        <div class="rounded-3xl border border-borderSoft bg-white p-6 shadow-card">
-          <i class="fa-solid fa-lightbulb mb-4 text-2xl text-primary"></i>
-          <h3 class="font-semibold">Product-Driven Approach</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600">
-            Strong balance of user value, technical quality, and business potential.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="contact" class="bg-white">
-  <div class="mx-auto max-w-5xl px-6 py-20 lg:px-8">
-    <div
-      class="rounded-3xl border border-borderSoft bg-gradient-to-br from-soft to-white p-10 text-center shadow-card sm:p-14">
-      <span class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">Contact</span>
-      <h2 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-        Have a mobile app idea?
-      </h2>
-      <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-textMuted">
-        TurnaWorks helps founders and businesses create polished mobile experiences for iOS and Android.
-        If you are looking to build your next product, let’s talk.
-      </p>
-
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href="mailto:support@turnaworks.com"
-          class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-semibold text-white transition hover:bg-primaryDark"
-        >
-          <i class="fa-solid fa-envelope"></i>
-          support@turnaworks.com
-        </a>
-        <a
-          href="#home"
-          class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-6 py-3.5 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-        >
-          <i class="fa-solid fa-arrow-up"></i>
-          Back to Top
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="border-t border-slate-100 bg-white">
-  <div
-    class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-slate-500 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-    <div class="flex items-center gap-3">
-      <!-- Replace with your actual logo path -->
-      <img src="/turnaworks-logo.svg" alt="TurnaWorks logo" class="h-8 w-auto" />
-      <span>© 2026 TurnaWorks. All rights reserved.</span>
-    </div>
-
-    <div class="flex flex-wrap items-center gap-5">
-      <a href="#about" class="transition hover:text-primary">About</a>
-      <a href="#services" class="transition hover:text-primary">Services</a>
-      <a href="#portfolio" class="transition hover:text-primary">Portfolio</a>
-      <a href="#contact" class="transition hover:text-primary">Contact</a>
-    </div>
-  </div>
 </footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+    // ===== TRANSLATIONS =====
+    const translations = {
+        tr: {
+            nav_cta: 'İletişime Geç',
+            hero_badge: 'iOS & Android Uygulama Geliştirme',
+            hero_title_1: 'Uygulamalarınızı',
+            hero_title_2: 'Hayata Geçiriyoruz',
+            hero_desc: 'TurnaWorks olarak, iOS ve Android platformlarında modern, kullanıcı odaklı ve ölçeklenebilir mobil uygulamalar geliştiriyoruz. Fikrinizden App Store ve Google Play\'e kadar tüm süreçte yanınızdayız.',
+            hero_cta_1: 'Hizmetlerimiz',
+            hero_cta_2: 'İletişime Geç',
+            hero_card_1_title: 'iOS Geliştirme',
+            hero_card_1_desc: 'Native Swift ile premium iOS uygulamaları',
+            hero_card_2_title: 'Android Geliştirme',
+            hero_card_2_desc: 'Kotlin ile yüksek performanslı Android uygulamaları',
+            hero_card_3_title: 'UI/UX Tasarım',
+            hero_card_3_desc: 'Kullanıcı odaklı, modern arayüz tasarımları',
+            hero_card_4_title: 'API & Backend',
+            hero_card_4_desc: 'Ölçeklenebilir backend ve API çözümleri',
+            stat_1: 'Tamamlanan Proje',
+            stat_2: 'Yıllık Deneyim',
+            stat_3: 'Mutlu Müşteri',
+            stat_4: 'Ülkede Yayında',
+            about_badge: 'Hakkımızda',
+            about_title: 'Mobil Uygulama Geliştirmede Uzman Ortak',
+            about_desc: 'TurnaWorks, iOS ve Android platformlarında uygulama geliştirme konusunda uzmanlaşmış bir yazılım şirketidir. Modern teknolojiler ve kullanıcı odaklı tasarım anlayışıyla, işletmelerin ve girişimcilerin fikirlerini hayata geçiriyoruz. Her projede kalite, performans ve kullanılabilirliği ön planda tutuyoruz.',
+            about_point_1_title: 'Uçtan Uca Hizmet',
+            about_point_1_desc: 'Fikir aşamasından yayınlama ve sonrasına kadar tüm süreçte destek',
+            about_point_2_title: 'Şeffaf İletişim',
+            about_point_2_desc: 'Düzenli güncellemeler ve açık iletişim ile projenizin kontrolü sizde',
+            about_point_3_title: 'Modern Teknolojiler',
+            about_point_3_desc: 'Swift, Kotlin, Flutter ve modern backend teknolojileri ile geliştirme',
+            services_badge: 'Hizmetler',
+            services_title: 'Neler Sunuyoruz',
+            services_desc: 'İhtiyacınıza özel, modern ve ölçeklenebilir mobil çözümlerle fikirlerinizi gerçeğe dönüştürüyoruz.',
+            service_1_title: 'Mobil Uygulama Geliştirme',
+            service_1_desc: 'iOS ve Android için native veya cross-platform yüksek kaliteli mobil uygulamalar geliştiriyoruz.',
+            service_2_title: 'Web Uygulama Geliştirme',
+            service_2_desc: 'Modern web teknolojileri ile responsive, hızlı ve kullanıcı dostu web uygulamaları oluşturuyoruz.',
+            service_3_title: 'UI/UX Tasarım',
+            service_3_desc: 'Kullanıcı deneyimini ön planda tutan, estetik ve işlevsel arayüz tasarımları hazırlıyoruz.',
+            service_4_title: 'API & Backend',
+            service_4_desc: 'Ölçeklenebilir, güvenli ve yüksek performanslı backend altyapısı ile API çözümleri sunuyoruz.',
+            contact_badge: 'İletişim',
+            contact_title: 'Bize Ulaşın',
+            contact_desc: 'Projeniz hakkında konuşmak, fikirlerinizi paylaşmak veya sorularınızı iletmek için bize ulaşın. Size en kısa sürede dönüş yapacağız.',
+            contact_email_label: 'E-posta',
+            contact_phone_label: 'Telefon',
+            contact_location_label: 'Konum',
+            contact_location_value: 'Bursa, Türkiye',
+            form_name: 'Adınız Soyadınız',
+            form_email: 'E-posta Adresiniz',
+            form_message: 'Mesajınız',
+            form_submit: 'Mesaj Gönder',
+            nav_hero: 'Ana Sayfa',
+            nav_about: 'Hakkımızda',
+            nav_services: 'Hizmetler',
+            nav_contact: 'İletişim',
+        },
+        en: {
+            nav_cta: 'Get in Touch',
+            hero_badge: 'iOS & Android App Development',
+            hero_title_1: 'Bringing Your',
+            hero_title_2: 'Applications to Life',
+            hero_desc: 'At TurnaWorks, we develop modern, user-focused, and scalable mobile applications for iOS and Android platforms. We are with you throughout the entire process, from idea to App Store and Google Play.',
+            hero_cta_1: 'Our Services',
+            hero_cta_2: 'Get in Touch',
+            hero_card_1_title: 'iOS Development',
+            hero_card_1_desc: 'Premium iOS apps with native Swift',
+            hero_card_2_title: 'Android Development',
+            hero_card_2_desc: 'High-performance Android apps with Kotlin',
+            hero_card_3_title: 'UI/UX Design',
+            hero_card_3_desc: 'User-focused, modern interface designs',
+            hero_card_4_title: 'API & Backend',
+            hero_card_4_desc: 'Scalable backend and API solutions',
+            stat_1: 'Projects Completed',
+            stat_2: 'Years Experience',
+            stat_3: 'Happy Clients',
+            stat_4: 'Countries Live',
+            about_badge: 'About Us',
+            about_title: 'Your Expert Partner in Mobile Development',
+            about_desc: 'TurnaWorks is a software company specialized in application development for iOS and Android platforms. With modern technologies and a user-focused design approach, we bring the ideas of businesses and entrepreneurs to life. We prioritize quality, performance, and usability in every project.',
+            about_point_1_title: 'End-to-End Service',
+            about_point_1_desc: 'Support throughout the entire process from idea to launch and beyond',
+            about_point_2_title: 'Transparent Communication',
+            about_point_2_desc: 'Regular updates and clear communication keep you in control of your project',
+            about_point_3_title: 'Modern Technologies',
+            about_point_3_desc: 'Development with Swift, Kotlin, Flutter, and modern backend technologies',
+            services_badge: 'Services',
+            services_title: 'What We Offer',
+            services_desc: 'We turn your ideas into reality with customized, modern, and scalable mobile solutions tailored to your needs.',
+            service_1_title: 'Mobile App Development',
+            service_1_desc: 'Building high-quality native or cross-platform mobile applications for iOS and Android.',
+            service_2_title: 'Web App Development',
+            service_2_desc: 'Creating responsive, fast, and user-friendly web applications with modern web technologies.',
+            service_3_title: 'UI/UX Design',
+            service_3_desc: 'Crafting aesthetic and functional interface designs with a focus on user experience.',
+            service_4_title: 'API & Backend',
+            service_4_desc: 'Providing scalable, secure, and high-performance backend infrastructure and API solutions.',
+            contact_badge: 'Contact',
+            contact_title: 'Get in Touch',
+            contact_desc: 'Reach out to discuss your project, share your ideas, or ask any questions. We will get back to you as soon as possible.',
+            contact_email_label: 'Email',
+            contact_phone_label: 'Phone',
+            contact_location_label: 'Location',
+            contact_location_value: 'Bursa, Turkey',
+            form_name: 'Your Full Name',
+            form_email: 'Your Email Address',
+            form_message: 'Your Message',
+            form_submit: 'Send Message',
+            nav_hero: 'Home',
+            nav_about: 'About',
+            nav_services: 'Services',
+            nav_contact: 'Contact',
+        },
+    };
+
+    // ===== CURRENT LANGUAGE =====
+    let currentLang = 'en';
+
+    // ===== LANGUAGE SWITCHER =====
+    function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        // Update all elements with data-i18n attribute
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) {
+                el.textContent = t[key];
+            }
+        });
+
+        // Update language toggle buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('lang-active');
+            btn.classList.add('text-text-muted');
+        });
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if (activeBtn) {
+            activeBtn.classList.add('lang-active');
+            activeBtn.classList.remove('text-text-muted');
+        }
+
+        // Update HTML lang attribute
+        document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+
+        // Update form placeholders
+        if (lang === 'tr') {
+            document.getElementById('name').placeholder = 'Adınız Soyadınız';
+            document.getElementById('email').placeholder = 'ornek@email.com';
+            document.getElementById('message').placeholder = 'Mesajınızı yazın...';
+        } else {
+            document.getElementById('name').placeholder = 'Your Full Name';
+            document.getElementById('email').placeholder = 'hello@example.com';
+            document.getElementById('message').placeholder = 'Write your message...';
+        }
+    }
+
+    document.getElementById('lang-tr').addEventListener('click', () => setLanguage('tr'));
+    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+    // ===== MOBILE MENU =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('hamburger-open');
+        mobileMenu.classList.toggle('mobile-menu-open');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('hamburger-open');
+            mobileMenu.classList.remove('mobile-menu-open');
+        });
+    });
+
+    // ===== ACTIVE NAV LINK ON SCROLL =====
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveNav() {
+        let current = '';
+        sections.forEach(section => {
+            const top = section.offsetTop - 120;
+            const bottom = top + section.offsetHeight;
+            if (window.scrollY >= top && window.scrollY < bottom) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-nav') === current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('load', updateActiveNav);
+
+    // ===== SMOOTH SCROLL FOR NAV LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
+        });
+    });
+
+    // ===== HEADER SHADOW ON SCROLL =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('shadow-sm');
+        } else {
+            header.classList.remove('shadow-sm');
+        }
+    });
+
+    // ===== SET DEFAULT LANGUAGE TO ENGLISH =====
+    setLanguage('en');
+</script>
 
 </body>
 </html>
