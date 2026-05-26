@@ -529,8 +529,7 @@
 
             <!-- Right: Contact Form -->
             <div class="rounded-2xl border border-gray-100 bg-white p-8 shadow-card">
-                <form id="contact-form" action="mailto:support@turnaworks.com" method="post" enctype="text/plain"
-                      class="space-y-5">
+                <form id="contact-form" class="space-y-5">
                     <div>
                         <label for="name" class="block text-sm font-medium text-text-dark mb-1.5" data-i18n="form_name">Adınız
                             Soyadınız</label>
@@ -822,6 +821,26 @@
         } else {
             header.classList.remove('shadow-sm');
         }
+    });
+
+    // ===== CONTACT FORM - MAILTO HANDLER =====
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !message) return;
+
+        const subject = currentLang === 'tr'
+            ? `TurnaWorks İletişim - ${name}`
+            : `TurnaWorks Contact - ${name}`;
+
+        const body = currentLang === 'tr'
+            ? `Ad: ${name}\n\nMesaj:\n${message}`
+            : `Name: ${name}\n\nMessage:\n${message}`;
+
+        window.location.href = `mailto:support@turnaworks.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 
     // ===== SET DEFAULT LANGUAGE TO ENGLISH =====
