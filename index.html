@@ -539,13 +539,6 @@
                                placeholder="Adınız Soyadınız"/>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-text-dark mb-1.5"
-                               data-i18n="form_email">E-posta Adresiniz</label>
-                        <input type="email" id="email" name="email" required
-                               class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-text-dark placeholder:text-text-muted transition-all duration-200"
-                               placeholder="ornek@email.com"/>
-                    </div>
-                    <div>
                         <label for="message" class="block text-sm font-medium text-text-dark mb-1.5"
                                data-i18n="form_message">Mesajınız</label>
                         <textarea id="message" name="message" rows="4" required
@@ -758,11 +751,9 @@
         // Update form placeholders
         if (lang === 'tr') {
             document.getElementById('name').placeholder = 'Adınız Soyadınız';
-            document.getElementById('email').placeholder = 'ornek@email.com';
             document.getElementById('message').placeholder = 'Mesajınızı yazın...';
         } else {
             document.getElementById('name').placeholder = 'Your Full Name';
-            document.getElementById('email').placeholder = 'hello@example.com';
             document.getElementById('message').placeholder = 'Write your message...';
         }
     }
