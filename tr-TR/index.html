@@ -160,6 +160,15 @@
             margin-left: 4px;
             animation: blink 1s steps(2) infinite;
         }
+
+        /* Hero title: each line stays on one line, shrinking only as much as needed to avoid mid-word wrap */
+        .hero-title-container {
+            container-type: inline-size;
+        }
+        .hero-line {
+            display: block;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body class="font-mono antialiased">
@@ -251,16 +260,16 @@
 
             <div class="flex-1 grid lg:grid-cols-12 gap-10 items-center">
                 <!-- Left column -->
-                <div class="lg:col-span-8">
+                <div class="lg:col-span-8 hero-title-container">
                     <div class="text-xs text-white/40 mb-6 flex items-center gap-3">
                         <span class="text-white">➜</span>
                         <span>~ $</span>
                         <span class="text-white/60">cat manifesto.txt</span>
                     </div>
 
-                    <h1 class="text-[2.75rem] sm:text-6xl lg:text-[5.5rem] font-extralight tracking-tighter leading-[0.95] mb-8">
-                        Kod yazmıyoruz<span class="text-white/30">.</span><br>
-                        <span class="font-extrabold">Problem çözüyoruz</span><span class="text-white/30">.</span>
+                    <h1 class="font-extralight tracking-tighter leading-[0.95] mb-8">
+                        <span class="hero-line" style="font-size:min(11cqw,5.5rem)">Kod yazmıyoruz<span class="text-white/30">.</span></span>
+                        <span class="hero-line" style="font-size:min(9.2cqw,5.5rem)"><span class="font-extrabold">Problem çözüyoruz</span><span class="text-white/30">.</span></span>
                     </h1>
 
                     <div class="max-w-2xl text-white/60 text-sm md:text-base leading-relaxed space-y-4">
